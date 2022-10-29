@@ -1,0 +1,62 @@
+{
+  "name": "@hawk-protocol/hawk-swap-periphery",
+  "version": "1.0.1",
+  "description": "🎚 Peripheral smart contracts for interacting with Rocswap V2",
+  "engines": {
+    "node": ">=10"
+  },
+  "homepage": "https://hawkswap.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hawk-protocol/hawk-swap-periphery"
+  },
+  "files": [
+    "build",
+    "contracts"
+  ],
+  "dependencies": {
+    "@hawk-protocol/hawk-swap-core": "1.0.1",
+    "@openzeppelin/contracts": "^3.3.0",
+    "@uniswap/lib": "1.1.1"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers",
+    "@nomiclabs/hardhat-etherscan": "^3.1.1",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "@types/chai": "^4.2.6",
+    "@types/mocha": "^5.2.7",
+    "chai": "^4.2.0",
+    "dotenv": "^9.0.2",
+    "ethereum-waffle": "^2.4.1",
+    "ethereumjs-util": "^6.2.0",
+    "ethers": "^5.0.0",
+    "hardhat": "^2.3.0",
+    "hardhat-deploy": "^0.7.6",
+    "hardhat-local-networks-config-plugin": "^0.0.5",
+    "mocha": "^6.2.2",
+    "ncp": "^2.0.0",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.0",
+    "solc": "0.6.6",
+    "solidity-coverage": "^0.7.16",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.3"
+  },
+  "scripts": {
+    "lint": "yarn prettier ./test/*.ts --check",
+    "lint:fix": "yarn prettier ./test/*.ts --write",
+    "clean": "rimraf ./build/",
+    "precompile": "yarn clean",
+    "compile": "waffle .waffle.json",
+    "pretest": "yarn compile",
+    "test": "mocha",
+    "prepublishOnly": "yarn test",
+    "deploy": "hardhat deploy --tags main",
+    "deploy:mining": "hardhat deploy --tags mining",
+    "deploy:mumbai": "hardhat deploy --network mumbai --tags main",
+    "deploy:polygon": "hardhat deploy --network polygon --tags main",
+    "export": "hardhat export --export-all deployments/addresses.json",
+    "export:polygon": "hardhat export --export deployments/polygon_addresses.json --network polygon"
+  },
+  "license": "GPL-3.0-or-later"
+}
